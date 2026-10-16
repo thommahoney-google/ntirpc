@@ -1516,6 +1516,7 @@ svc_rqst_epoll_event(struct svc_rqst_rec *sr_rec, struct epoll_event *ev)
 					rec = REC_XPRT(xprt);
 					goto tls_dpr;
 				}
+				SVC_RELEASE(xprt, SVC_RELEASE_FLAG_NONE);
 			}
 		}
 #else

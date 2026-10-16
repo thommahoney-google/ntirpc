@@ -701,8 +701,10 @@ svc_validate_xprt_list(SVCXPRT *xprt)
 	SVCXPRT *found = svc_xprt_lookup(xprt->xp_fd, NULL);
 	bool code = (found == xprt);
 
-	if (found)
+	if (found) {
 		rpc_dplx_rui(REC_XPRT(found));
+		SVC_RELEASE(found, SVC_RELEASE_FLAG_NONE);
+	}
 
 	return (code);
 }
